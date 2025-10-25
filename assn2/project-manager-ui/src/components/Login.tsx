@@ -2,37 +2,23 @@ import React, { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../services/authService';
 import './Auth.css';
-
-const Register: React.FC = () => {
+const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters');
-      return;
-    }
-
     setLoading(true);
-
     try {
-      const response = await authService.register(username, password);
+      const response = await authService.login(username, password);
       localStorage.setItem('token', response.token);
       localStorage.setItem('username', response.username);
-      navigate('/studio');
+      navigate('/dashboard');
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Registration failed');
+      setError(err.response?.data?.message || 'Invalid username or password');
     } finally {
       setLoading(false);
     }
@@ -40,7 +26,7 @@ const Register: React.FC = () => {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>TaskFlow Register</h2>
+        <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           {error && <div className="error-message">{error}</div>}
           <div className="form-group">
@@ -63,29 +49,16 @@ const Register: React.FC = () => {
               required
             />
           </div>
-          <div className="form-group">
-            <label>Confirm Password</label>
-   
-             <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button 
- type="submit" disabled={loading}>
-            {loading ?
-'Registering...' : 'Register'}
+          <button type="submit" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
         <p className="auth-link">
-          Already have an account?
-<Link to="/login">Login</Link>
+          Don't have an account? <Link to="/register">Register</Link>
         </p>
       </div>
     </div>
   );
 };
 
-export default Register;
+export default Login;

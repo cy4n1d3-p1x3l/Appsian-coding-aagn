@@ -1,4 +1,4 @@
-namespace FlowAPI.Models
+namespace ProjectManagerAPI.Models
 {
     public class Project
     {

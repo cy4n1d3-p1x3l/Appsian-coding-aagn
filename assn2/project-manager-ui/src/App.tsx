@@ -15,7 +15,7 @@ function App() {
           path="/"
           element={
             authService.isAuthenticated() ? (
-              <Navigate to="/studio" />
+              <Navigate to="/dashboard" />
             ) : (
              
                <Navigate to="/login" />
@@ -25,7 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
-          path="/studio"
+          path="/dashboard"
           element={
             <PrivateRoute>
    

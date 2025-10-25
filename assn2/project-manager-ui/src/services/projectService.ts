@@ -8,7 +8,7 @@ export const projectService = {
   },
 
   async getProject(id: string): Promise<Project> {
-    const response = await api.get<Project>(/projects/${id});
+    const response = await api.get<Project>(`/projects/${id}`);
     return response.data;
   },
 
@@ -21,16 +21,16 @@ export const projectService = {
   },
 
   async deleteProject(id: string): Promise<void> {
-    await api.delete(/projects/${id});
+    await api.delete(`/projects/${id}`);
   },
 
   async getProjectTasks(projectId: string): Promise<Task[]> {
-    const response = await api.get<Task[]>(/projects/${projectId}/tasks);
+    const response = await api.get<Task[]>(`/projects/${projectId}/tasks`);
     return response.data;
   },
 
   async createTask(projectId: string, title: string, dueDate?: string): Promise<Task> {
-    const response = await api.post<Task>(/projects/${projectId}/tasks, {
+    const response = await api.post<Task>(`/projects/${projectId}/tasks`, {
       title,
       dueDate,
     });
@@ -38,11 +38,11 @@ export const projectService = {
   },
 
   async updateTask(id: string, updates: Partial<Task>): Promise<Task> {
-    const response = await api.put<Task>(/tasks/${id}, updates);
+    const response = await api.put<Task>(`/tasks/${id}`, updates);
     return response.data;
   },
 
   async deleteTask(id: string): Promise<void> {
-    await api.delete(/tasks/${id});
+    await api.delete(`/tasks/${id}`);
   },
 };

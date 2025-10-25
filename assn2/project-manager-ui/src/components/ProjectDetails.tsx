@@ -29,7 +29,7 @@ const ProjectDetails: React.FC = () => {
       setProject(data);
     } catch (err) {
       console.error('Error fetching project:', err);
-      navigate('/studio');
+      navigate('/dashboard');
     }
   };
   const fetchTasks = async () => {
@@ -96,10 +96,10 @@ const ProjectDetails: React.FC = () => {
     <div className="project-details">
       <nav className="navbar">
         <div className="nav-left">
-          <button onClick={() => navigate('/studio')} className="back-btn">
-            ← Back to Workspaces
+          <button onClick={() => navigate('/dashboard')} className="back-btn">
+            ← Back
           </button>
-          <h1>Flow: {project.title}</h1>
+          <h1>{project.title}</h1>
         </div>
         <div className="nav-right">
           <span>Welcome, {username}</span>
@@ -113,7 +113,7 @@ const ProjectDetails: React.FC = () => {
       <div className="project-content">
         {project.description && (
           <div className="project-description">
-            <h3>Flow Goal</h3>
+            <h3>Description</h3>
             <p>{project.description}</p>
  
              </div>
@@ -121,9 +121,9 @@ const ProjectDetails: React.FC = () => {
 
         <div className="tasks-section">
           <div className="tasks-header">
-            <h2>Action Items</h2>
+            <h2>Tasks</h2>
             <button onClick={() => setShowModal(true)} className="btn-primary">
-              + Add Action Item
+              + Add Task
             </button>
        
            </div>
@@ -132,7 +132,7 @@ const ProjectDetails: React.FC = () => {
             {tasks.length === 0 ?
  (
               <p className="no-tasks">
-                No action items yet. Add a task to get started!
+                No tasks yet. Add a task to get started!
               </p>
             ) : (
               tasks.map((task) => (
@@ -162,7 +162,7 @@ const ProjectDetails: React.FC = () => {
             
                        className="btn-delete"
                     >
-                      Remove
+                      Delete
                     </button>
                   </div>
           
@@ -177,11 +177,11 @@ const ProjectDetails: React.FC = () => {
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
           
-             <h3>Add New Action Item</h3>
+             <h3>Add New Task</h3>
             <form onSubmit={handleCreateTask}>
               {error && <div className="error-message">{error}</div>}
               <div className="form-group">
-                <label>Action Item Title *</label>
+                <label>Task Title *</label>
                 <input
                  
                    type="text"
@@ -192,7 +192,7 @@ const ProjectDetails: React.FC = () => {
               </div>
              
                  <div className="form-group">
-                <label>Target Date (optional)</label>
+                <label>Due Date (optional)</label>
                 <input
                   type="date"
                   value={newTaskDueDate}
@@ -211,7 +211,7 @@ const ProjectDetails: React.FC = () => {
                 </button>
                 <button type="submit" disabled={loading} className="btn-primary">
                   {loading ?
-'Adding...' : 'Add Item'}
+'Adding...' : 'Add Task'}
                 </button>
               </div>
             </form>

@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using FlowAPI.DTOs;
-using FlowAPI.Models;
-using FlowAPI.Services;
+using ProjectManagerAPI.DTOs;
+using ProjectManagerAPI.Models;
+using ProjectManagerAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var jwtSecret = builder.Configuration["JwtSettings:Secret"]!;
@@ -14,7 +14,7 @@ var jwtSecret = builder.Configuration["JwtSettings:Secret"]!;
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
-        policy => policy.WithOrigins("http://localhost:3000")
+        policy => policy.AllowAnyOrigin()
                          .AllowAnyHeader()
                          .AllowAnyMethod()
                          .AllowCredentials());

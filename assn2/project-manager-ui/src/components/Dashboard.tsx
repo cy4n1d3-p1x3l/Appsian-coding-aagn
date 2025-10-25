@@ -63,7 +63,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
       <nav className="navbar">
-        <h1>TaskFlow Studio</h1>
+        <h1>Project Manager</h1>
         <div className="nav-right">
           <span>Welcome, {username}</span>
           <button onClick={handleLogout} className="logout-btn">
@@ -75,9 +75,9 @@ const Dashboard: React.FC = () => {
       <div className="dashboard-content">
    
            <div className="dashboard-header">
-          <h2>My Workspaces</h2>
+          <h2>My Projects</h2>
           <button onClick={() => setShowModal(true)} className="btn-primary">
-            + Start New Flow
+            + New Project
           </button>
         </div>
 
@@ -85,7 +85,7 @@ const Dashboard: React.FC = () => {
           {projects.length === 0 ? (
             <p className="no-projects">
  
-               No workspaces yet. Create your first Flow to get started!
+               No projects yet. Create your first project to get started!
             </p>
           ) : (
             projects.map((project) => (
@@ -93,7 +93,7 @@ const Dashboard: React.FC = () => {
                 key={project.id}
           
                  className="project-card"
-                onClick={() => navigate(/projects/${project.id})}
+                onClick={() => navigate(`/projects/${project.id}`)}
               >
                 <h3>{project.title}</h3>
                 {project.description && <p>{project.description}</p>}
@@ -110,7 +110,7 @@ const Dashboard: React.FC = () => {
                     }}
                     className="btn-delete"
                   >
-                    Delete Flow
+                    Delete
                   </button>
                 </div>
         
@@ -123,12 +123,12 @@ const Dashboard: React.FC = () => {
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h3>Create New Flow</h3>
+            <h3>Create New Project</h3>
           
             <form onSubmit={handleCreateProject}>
               {error && <div className="error-message">{error}</div>}
               <div className="form-group">
-                <label>Flow Title *</label>
+                <label>Project Title *</label>
                 <input
                   type="text"
              
@@ -140,7 +140,7 @@ const Dashboard: React.FC = () => {
               </div>
          
                  <div className="form-group">
-                <label>Flow Goal/Description (optional)</label>
+                <label>Description (optional)</label>
                 <textarea
                   value={newProjectDesc}
                   onChange={(e) => setNewProjectDesc(e.target.value)}
@@ -161,7 +161,7 @@ const Dashboard: React.FC = () => {
                 <button type="submit" disabled={loading} className="btn-primary">
  
                    {loading ?
-'Creating...' : 'Create Flow'}
+'Creating...' : 'Create'}
                 </button>
               </div>
             </form>

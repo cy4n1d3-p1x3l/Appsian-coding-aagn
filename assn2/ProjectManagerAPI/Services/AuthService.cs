@@ -3,8 +3,8 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using FlowAPI.Models;
-namespace FlowAPI.Services
+using ProjectManagerAPI.Models;
+namespace ProjectManagerAPI.Services
 {
     public class AuthService
     {
