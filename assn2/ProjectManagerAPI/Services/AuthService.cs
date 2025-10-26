@@ -40,14 +40,12 @@ namespace ProjectManagerAPI.Services
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.Username)
- 
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
-       
-             };
+            };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
@@ -62,7 +60,6 @@ namespace ProjectManagerAPI.Services
                 Username = username,
                 PasswordHash = HashPassword(password),
                 CreatedAt = DateTime.UtcNow
-            
             };
 
             _users.Add(user);

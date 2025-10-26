@@ -17,8 +17,7 @@ function App() {
             authService.isAuthenticated() ? (
               <Navigate to="/dashboard" />
             ) : (
-             
-               <Navigate to="/login" />
+              <Navigate to="/login" />
             )
           }
         />
@@ -28,8 +27,7 @@ function App() {
           path="/dashboard"
           element={
             <PrivateRoute>
-   
-               <Dashboard />
+              <Dashboard />
             </PrivateRoute>
           }
         />
@@ -38,8 +36,7 @@ function App() {
           element={
             <PrivateRoute>
               <ProjectDetails />
-   
-             </PrivateRoute>
+            </PrivateRoute>
           }
         />
       </Routes>

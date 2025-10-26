@@ -17,9 +17,17 @@ export interface Task {
   dueDate?: string;
   isCompleted: boolean;
   projectId: string;
+  estimatedHours?: number;
+  dependencies: string[]; // List of Task IDs (Guids)
 }
 
 export interface AuthResponse {
   token: string;
   username: string;
+}
+
+export interface ScheduleResponse {
+  recommendedOrder: string[];
+  totalEstimatedHours: number;
+  errorMessage?: string;
 }

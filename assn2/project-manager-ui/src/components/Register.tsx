@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../services/authService';
+import { ButtonLoader } from './Loader';
 import './Auth.css';
 
 const Register: React.FC = () => {
@@ -32,7 +33,7 @@ const Register: React.FC = () => {
       localStorage.setItem('username', response.username);
       navigate('/dashboard');
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Registration failed');
+      setError(err.message || 'Registration failed');
     } finally {
       setLoading(false);
     }
@@ -47,7 +48,6 @@ const Register: React.FC = () => {
             <label>Username</label>
             <input
               type="text"
-        
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -56,8 +56,7 @@ const Register: React.FC = () => {
           <div className="form-group">
             <label>Password</label>
             <input
-       
-               type="password"
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -65,23 +64,20 @@ const Register: React.FC = () => {
           </div>
           <div className="form-group">
             <label>Confirm Password</label>
-   
-             <input
+            <input
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
           </div>
-          <button 
- type="submit" disabled={loading}>
-            {loading ?
-'Registering...' : 'Register'}
+          <button type="submit" disabled={loading} className="btn-primary">
+            {loading ? <ButtonLoader /> : 'Register'}
           </button>
         </form>
         <p className="auth-link">
           Already have an account?
-<Link to="/login">Login</Link>
+          <Link to="/login">Login</Link>
         </p>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../services/authService';
+import { ButtonLoader } from './Loader';
 import './Auth.css';
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ const Login: React.FC = () => {
       localStorage.setItem('username', response.username);
       navigate('/dashboard');
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Invalid username or password');
+      setError(err.message || 'Invalid username or password');
     } finally {
       setLoading(false);
     }
@@ -33,7 +34,6 @@ const Login: React.FC = () => {
             <label>Username</label>
             <input
               type="text"
-        
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -42,15 +42,14 @@ const Login: React.FC = () => {
           <div className="form-group">
             <label>Password</label>
             <input
-       
-               type="password"
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
-          <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+          <button type="submit" disabled={loading} className="btn-primary">
+            {loading ? <ButtonLoader /> : 'Login'}
           </button>
         </form>
         <p className="auth-link">
