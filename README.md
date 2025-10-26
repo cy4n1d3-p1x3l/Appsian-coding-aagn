@@ -1,8 +1,8 @@
-# Mradul Singhal - Home Assignments
+# Mradul Singhal - 22116055
 
-**Email:** [your email here]  
-**GitHub:** [your GitHub link here]  
-**LinkedIn:** [your LinkedIn link here]  
+**Email:** mradul_s@ece.iitr.ac.in 
+**GitHub:** https://github.com/cy4n1d3-p1x3l/Appsian-coding-aagn
+**Deployment Link** 
 
 ---
 
